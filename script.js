@@ -1,4 +1,3 @@
-
 const form = document.getElementById('form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -28,14 +27,11 @@ const get = async (url) => {
     const data = await res.json();
     return data;
 }
-
 get('http://localhost:3000/text').then(res => {
-    console.log(res);
     resultsDiv.innerHTML = ''; 
     res.forEach(e => {
         const resultItem = document.createElement('div'); 
-        resultItem.textContent = e.value; 
+        resultItem.textContent = e.value || e.text;  // Егер 'value' жоқ болса, 'text'-ті қолдану
         resultsDiv.appendChild(resultItem); 
     });
 });
-
